@@ -2,12 +2,10 @@
     "name": "lightphp/lightphp-base",
     "type": "library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Sam Street",
-            "email": "samstreet@null.net"
-        }
-    ],
+    "authors": [{
+        "name": "Sam Street",
+        "email": "samstreet@null.net"
+    }],
     "minimum-stability": "dev",
     "require": {
 
@@ -15,6 +13,6 @@
     "autoload": {
         "psr-4": {
             "LightPhP\\": "src/LightPHP/"
-        },
+        }
     }
 }
