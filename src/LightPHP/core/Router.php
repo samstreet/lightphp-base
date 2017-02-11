@@ -77,6 +77,6 @@ class Router
         $controller = $this->methods['error']['controller'];
         $controller->setView($this->methods['error']['view']);
         $action = $this->methods[$key]['action']."Action";
-        return $controller->action();
+        return $controller->$action();
     }
 }
