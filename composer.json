@@ -9,10 +9,12 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
-    "autoload": {
-    "psr-4": {
-      "LightPhP\\": "src/LightPHP/"
+    "require": {
+
     },
-  },
+    "autoload": {
+        "psr-4": {
+            "LightPhP\\": "src/LightPHP/"
+        },
+    }
 }
