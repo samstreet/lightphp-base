@@ -38,7 +38,7 @@ class LightPHP implements AppInterface
             $this->router = new Router();
             $this->router->addRoutes($this->config["routes"]);
             Core::setServiceLocator($this->config["services"]);
-            $layout =  new Layout($this->layout);
+            $layout =  new Layout($this->config["layout"]);
             Core::setLayout($layout);
         }catch (\Exception $e){
 

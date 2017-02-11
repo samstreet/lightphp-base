@@ -17,7 +17,7 @@ class Layout
     function __construct($template, $content = null)
     {
         try {
-            $file = __DIR__ . "/../layout/" . $template . ".phtml";
+            $file = $template;
             if (file_exists($file)) {
                 $this->content = $content;
                 $this->render = $file;
