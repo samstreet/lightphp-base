@@ -75,8 +75,9 @@ class Router
 
         // required 404 view
         $controller = $this->methods['error']['controller'];
+        $controller = new $controller();
         $controller->setView($this->methods['error']['view']);
-        $action = $this->methods[$key]['action']."Action";
+        $action = $this->methods['error']['action']."Action";
         return $controller->$action();
     }
 }
