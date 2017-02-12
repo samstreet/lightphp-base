@@ -22,7 +22,7 @@ class View
         }
         
         try {
-            $file = Core::getConfig()['view_root'] . $template . ".phtml";
+            $file = Core::getConfig()['view_root'] . '/' . $template . ".phtml";
             if (file_exists($file)) {
                 $this->render = file_get_contents($file);
             } else {
