@@ -26,6 +26,7 @@ class LightPHP implements AppInterface
     {
         try{
             $this->config = $this->validateConfig($config);
+            Core::setConfig($this->config);
             $this->setUp();
         } catch (\Exception $e) {
             die(var_dump($e->getMessage())); // display a better error

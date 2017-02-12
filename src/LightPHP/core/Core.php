@@ -17,13 +17,18 @@ class Core
 {
     protected static $_serviceLocator = null;
     protected static $_layout = null;
+    protected static $_config = [];
 
     /**
      * Return the default config
      * @return mixed
      */
     public static function getConfig(){
-        return include __DIR__  . "/../../config/config.php";
+        return self::$_config;
+    }
+
+    public static function setConfig($config){
+        return self::$_config = $config;
     }
 
     public static function setServiceLocator($services){

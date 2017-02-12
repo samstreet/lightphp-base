@@ -20,9 +20,9 @@ class View
         if(null === $template){
             $this->render = $this->redirectTo404();
         }
-
+        
         try {
-            $file = __DIR__ . "/../MVC/View/" . $template . ".phtml";
+            $file = Core::getConfig()['view_root'] . $template . ".phtml";
             if (file_exists($file)) {
                 $this->render = file_get_contents($file);
             } else {
@@ -36,7 +36,7 @@ class View
     }
 
     public function redirectTo404(){
-        return __DIR__ . "/../MVC/View/error/404.phtml";
+        return file_get_contents(Core::getConfig()['view_root'] . $template . ".phtml");
     }
 
     public function assign($variable, $value)
