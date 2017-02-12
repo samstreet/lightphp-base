@@ -36,7 +36,7 @@ class View
     }
 
     public function redirectTo404(){
-        return file_get_contents(Core::getConfig()['view_root'] . $template . ".phtml");
+        return file_get_contents(Core::getConfig()['view_root'] . "/error/error.phtml");
     }
 
     public function assign($variable, $value)
