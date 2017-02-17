@@ -13,6 +13,13 @@ class ControllerBase
 {
     protected $view = null;
 
+    protected $response;
+
+    function __construct()
+    {
+        $this->response = new Response();
+    }
+
     public function setView($view){
         $layout = Core::getLayout();
         $view = new View($view);

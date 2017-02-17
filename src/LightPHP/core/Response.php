@@ -14,6 +14,14 @@ use LightPHP\Interfaces\ResponseInterface;
 class Response implements ResponseInterface
 {
 
+    protected $_body;
+    protected $statusCode;
+
+    function __construct()
+    {
+        
+    }
+
     protected $http_status_codes = [
         100 => "Continue",
         101 => "Switching Protocols",
@@ -92,17 +100,17 @@ class Response implements ResponseInterface
 
     public function getBody()
     {
-        // TODO: Implement getBody() method.
+        return $this->_body;
     }
 
-    public function setBody()
+    public function setBody($body)
     {
-        // TODO: Implement setBody() method.
+        return $this->_body = $body;
     }
 
     public function getStatusCode()
     {
-        // TODO: Implement getStatusCode() method.
+        return $this->statusCode;
     }
 
 

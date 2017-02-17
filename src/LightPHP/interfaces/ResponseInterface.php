@@ -12,6 +12,6 @@ namespace LightPHP\Interfaces;
 interface ResponseInterface
 {
     public function getBody();
-    public function setBody();
+    public function setBody($body);
     public function getStatusCode();
 }
