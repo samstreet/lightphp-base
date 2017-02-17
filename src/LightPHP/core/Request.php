@@ -18,12 +18,10 @@ class Request implements RequestInterface
     CONST M_DELETE  = "DELETE";
 
     protected $_method = self::M_GET;
-
     protected $_headers = [];
-
     protected $_body = null;
-
     protected $_uri = null;
+    protected $_controller = null;
 
     function __construct($uri, $method, $headers, $body)
     {
@@ -40,16 +38,10 @@ class Request implements RequestInterface
 
     public function getHeaders()
     {
-        // TODO: Implement getHeaders() method.
+        return $this->_headers;
     }
 
-    public function getQuery()
-    {
-        // TODO: Implement getQuery() method.
-    }
-
-    public function getPost()
-    {
-        // TODO: Implement getPost() method.
+    public function setController($controller){
+        return $this->_controller = $controller;
     }
 }

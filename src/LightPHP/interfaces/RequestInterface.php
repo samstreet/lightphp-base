@@ -12,6 +12,4 @@ namespace LightPHP\Interfaces;
 interface RequestInterface
 {
     public function getHeaders();
-    public function getQuery();
-    public function getPost();
 }

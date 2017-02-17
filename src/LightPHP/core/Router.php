@@ -51,9 +51,9 @@ class Router
     public function dispatch(){
         $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : "/";
 
-        $request = new Request($uri, $_SERVER['REQUEST_METHOD'], []);
+        $request = new Request($uri, $_SERVER['REQUEST_METHOD'], getallheaders(), "");
         Core::setRequest($request);
-        die(var_dump(Core::getRequest()));
+
         foreach ($this->routes as $key => $route) {
 
             $pattern = "@^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$@D";
