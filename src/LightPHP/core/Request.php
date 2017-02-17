@@ -23,13 +23,16 @@ class Request implements RequestInterface
 
     protected $_body = null;
 
-    function __construct($method, $headers)
+    protected $_uri = null;
+
+    function __construct($uri, $method, $headers, $body)
     {
         if(!defined('static::M_' . $method))
             throw new \Exception("Invalid method supplied");
 
         $this->_method = $method;
         $this->_headers = $headers;
+        $this->_uri = $uri;
 
         return $this;
 

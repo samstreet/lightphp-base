@@ -10,7 +10,8 @@ namespace LightPHP\Core;
 
 use LightPHP\Exceptions\ClassNotFoundException;
 use LightPHP\Exceptions\InvalidRouteCollectionException;
-use LightPHP\MVC\Controller\ErrorController;
+use LightPHP\Core;
+use LightPHP\Core\Request;
 
 class Router
 {
@@ -50,6 +51,9 @@ class Router
     public function dispatch(){
         $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : "/";
 
+        $request = new Request($uri, $_SERVER['REQUEST_METHOD'], []);
+        Core::setRequest($request);
+        die(var_dump(Core::getRequest()));
         foreach ($this->routes as $key => $route) {
 
             $pattern = "@^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$@D";

@@ -18,6 +18,7 @@ class Core
     protected static $_serviceLocator = null;
     protected static $_layout = null;
     protected static $_config = [];
+    protected static $_request = null;
 
     /**
      * Return the default config
@@ -48,6 +49,22 @@ class Core
 
     public function getCoreService(){
         return $this->getServiceLocator()->get("core_service");
+    }
+
+    /**
+     * @return null
+     */
+    public static function getRequest()
+    {
+        return self::$_request;
+    }
+
+    /**
+     * @param null $request
+     */
+    public static function setRequest($request)
+    {
+        self::$_request = $request;
     }
 
     /**

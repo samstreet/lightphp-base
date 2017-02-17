@@ -9,6 +9,7 @@
 namespace LightPHP;
 
 use LightPHP\Core\Layout;
+use LightPHP\Core\Request;
 use LightPHP\Interfaces\AppInterface;
 use LightPHP\Core\Core;
 use LightPHP\Core\Router;
