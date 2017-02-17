@@ -9,9 +9,9 @@
 namespace LightPHP\Core;
 
 /**
- * Class Core
+ * Class core
  * Handles all core logic
- * @package LightPHP\Core
+ * @package LightPHP\core
  */
 class Core
 {

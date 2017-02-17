@@ -24,6 +24,8 @@ class Router
 
     public function __construct($base = null)
     {
+        $_SERVER["HTTP_HOST"] = isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "/";
+
         $this->base = is_null($base) ? $_SERVER["HTTP_HOST"] : $base;
     }
 
@@ -32,6 +34,11 @@ class Router
      * @param $method string
      */
     public function add($methods, $name, $route, $callable){
+
+        if(array_key_exists($name, $this->routes) || array_key_exists($name, $this->methods) || array_key_exists($name, $this->allowedMethods)){
+            throw new \Exception("Name already in use", 500);
+        }
+
         $this->routes[$name] = $route;
         $this->methods[$name] = $callable;
         $this->allowedMethods[$name] = $methods;
@@ -84,4 +91,34 @@ class Router
         $action = $this->methods['error']['action']."Action";
         return $controller->$action();
     }
+
+    public function getBase(){
+        return $this->base;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMethods()
+    {
+        return $this->methods;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllowedMethods()
+    {
+        return $this->allowedMethods;
+    }
+
+
 }

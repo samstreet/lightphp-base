@@ -30,7 +30,7 @@ class LightPHP implements AppInterface
             Core::setConfig($this->config);
             $this->setUp();
         } catch (\Exception $e) {
-            die(var_dump($e->getMessage())); // display a better error
+            return $e->getMessage();
         }
     }
 

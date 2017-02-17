@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true">
+    <testsuites>
+        <testsuite name="lightphp-base Test Suite">
+            <directory>./tests/LightPHP</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
