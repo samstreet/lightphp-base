@@ -22,7 +22,7 @@ class View
         }
         
         try {
-            $file = Core::getConfig()['view_root'] . '/' . $template . ".phtml";
+            $file = Core::getConfig()->getData('view_root') . '/' . $template . ".phtml";
             if (file_exists($file)) {
                 $this->render = file_get_contents($file);
             } else {
@@ -36,7 +36,7 @@ class View
     }
 
     public function redirectTo404(){
-        return file_get_contents(Core::getConfig()['view_root'] . "/error/error.phtml");
+        return file_get_contents(Core::getConfig()->getData('view_root') . "/error/error.phtml");
     }
 
     public function assign($variable, $value)

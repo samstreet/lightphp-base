@@ -22,11 +22,11 @@ class Layout
                 $this->content = $content;
                 $this->render = $file;
             } else {
-                throw new \Exception("");
+                throw new \Exception("Invalid Layout");
             }
         }
         catch (\Exception $e) {
-            die("ball");
+            throw $e;
         }
 
     }

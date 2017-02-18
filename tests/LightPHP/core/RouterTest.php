@@ -10,6 +10,7 @@ namespace Test\Core;
 
 
 use LightPHP\Core\Router;
+use LightPHP\Exceptions\InvalidRouteCollectionException;
 
 class RouterTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,7 +45,8 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, count($this->router->getRoutes()));
 
         // need to test exception
-        //$this->router->add(["GET"], "test2", "/test2", $callable);
+        $this->setExpectedException(\Exception::class);
+        $this->router->add(["GET"], "test2", "/test2", $callable);
     }
 
     public function testAddRoutesMethod(){

@@ -8,6 +8,7 @@
 
 namespace LightPHP;
 
+use LightPHP\Core\Config;
 use LightPHP\Core\Layout;
 use LightPHP\Core\Request;
 use LightPHP\Interfaces\AppInterface;
@@ -27,10 +28,11 @@ class LightPHP implements AppInterface
     {
         try{
             $this->config = $this->validateConfig($config);
+            die(var_dump($this->config));
             Core::setConfig($this->config);
             $this->setUp();
         } catch (\Exception $e) {
-            return $e->getMessage();
+            throw new $e;
         }
     }
 
@@ -43,7 +45,7 @@ class LightPHP implements AppInterface
             $layout =  new Layout($this->config["layout"]);
             Core::setLayout($layout);
         }catch (\Exception $e){
-
+            throw new $e;
         }
 
     }
@@ -65,6 +67,7 @@ class LightPHP implements AppInterface
             throw new \LightPHP\Exceptions\InvalidConfigurationFileException();
         }
 
+        $config = new Config($config);
         return $config;
     }
 
