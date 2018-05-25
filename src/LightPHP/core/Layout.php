@@ -3,18 +3,17 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 10/02/2017
- * Time: 17:20
+ * Time: 17:20.
  */
 
 namespace LightPHP\Core;
-
 
 class Layout
 {
     private $content;
     private $render;
 
-    function __construct($template, $content = null)
+    public function __construct($template, $content = null)
     {
         try {
             $file = $template;
@@ -22,13 +21,11 @@ class Layout
                 $this->content = $content;
                 $this->render = $file;
             } else {
-                throw new \Exception("Invalid Layout");
+                throw new \Exception('Invalid Layout');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
-
     }
 
     /**
@@ -50,8 +47,6 @@ class Layout
     public function __destruct()
     {
         extract((array) $this->content);
-        include($this->render);
+        include $this->render;
     }
-
-
 }

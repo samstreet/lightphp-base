@@ -3,20 +3,19 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 06/02/2017
- * Time: 20:48
+ * Time: 20:48.
  */
 
 namespace LightPHP\Core;
-
 
 use LightPHP\Interfaces\RegistrableInterface;
 
 class ServiceRegistry implements RegistrableInterface
 {
-    protected $_data = array();
+    protected $_data = [];
 
     /**
-     * Save the specified value to the array registry
+     * Save the specified value to the array registry.
      */
     public function set($key, $value)
     {
@@ -24,23 +23,22 @@ class ServiceRegistry implements RegistrableInterface
     }
 
     /**
-     * Get the specified value from the array registry
+     * Get the specified value from the array registry.
      */
     public function get($key)
     {
         $key = strtolower($key);
+
         return isset($this->_data[$key]) ?
             $this->_data[$key] :
             null;
     }
 
     /**
-     * Clear the array registry
+     * Clear the array registry.
      */
     public function clear()
     {
-        $this->_data = array();
+        $this->_data = [];
     }
-
-
 }

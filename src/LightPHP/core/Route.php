@@ -3,17 +3,16 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 17/06/2016
- * Time: 17:30
+ * Time: 17:30.
  */
 
 namespace LightPHP\Core;
-
 
 class Route
 {
     protected $name;
 
-    protected $method = array();
+    protected $method = [];
 
     protected $callable;
 
@@ -27,7 +26,7 @@ class Route
         $this->method = $method;
         $this->pattern = $pattern;
         $this->callable = $callable;
-        $this->identifier = "route_".$name;
+        $this->identifier = 'route_'.$name;
 
         return $this;
     }
@@ -71,7 +70,4 @@ class Route
     {
         return $this->pattern;
     }
-
-
-
 }

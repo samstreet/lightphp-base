@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 18/02/2017
- * Time: 20:19
+ * Time: 20:19.
  */
 
 namespace LightPHP\Core;
-
 
 class Config
 {
@@ -16,34 +15,33 @@ class Config
     protected $layout;
     protected $data = [];
 
-
-    function __construct($config = [])
+    public function __construct($config = [])
     {
-        try{
-            foreach ($config as $key => $value){
-                if($key == "routes"){
-                    $this->routes["name"] = $value;
-                } elseif ($key == "services"){
+        try {
+            foreach ($config as $key => $value) {
+                if ($key == 'routes') {
+                    $this->routes['name'] = $value;
+                } elseif ($key == 'services') {
                     $this->services[] = $value;
-                }elseif ($key == "layout"){
+                } elseif ($key == 'layout') {
                     $this->layout = new Layout($value);
-                } else{
+                } else {
                     $this->data[$key] = $value;
                 }
             }
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             throw $e;
         }
-
 
         return $this;
     }
 
-    public function addRoute($route){
-
+    public function addRoute($route)
+    {
     }
-    public function addService($service){
 
+    public function addService($service)
+    {
     }
 
     /**
@@ -77,11 +75,4 @@ class Config
     {
         return $this->data[$key];
     }
-
-
-
-
-
-
-
 }

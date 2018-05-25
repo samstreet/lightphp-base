@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 06/02/2017
- * Time: 20:51
+ * Time: 20:51.
  */
 
 namespace LightPHP\Core;
@@ -12,11 +12,10 @@ use LightPHP\Interfaces\RegistrableInterface;
 
 class ServiceLocator
 {
-
     protected $_registryBackend;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct(RegistrableInterface $registryBackend)
     {
@@ -24,16 +23,17 @@ class ServiceLocator
     }
 
     /**
-     * Save the specified element to the registry
+     * Save the specified element to the registry.
      */
     public function set($key, $value)
     {
         $this->_registryBackend->set($key, $value);
+
         return $this;
     }
 
     /**
-     * Get the specified element from the registry
+     * Get the specified element from the registry.
      */
     public function get($key)
     {
@@ -41,11 +41,10 @@ class ServiceLocator
     }
 
     /**
-     * Clear the registry
+     * Clear the registry.
      */
     public function clear()
     {
         $this->_registryBackend->clear();
     }
-
 }
