@@ -3,19 +3,18 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 08/02/2017
- * Time: 21:23
+ * Time: 21:23.
  */
 
 namespace LightPHP\Core;
-
 
 use LightPHP\Interfaces\RequestInterface;
 
 class Request implements RequestInterface
 {
-    CONST M_GET     = "GET";
-    CONST M_POST    = "POST";
-    CONST M_DELETE  = "DELETE";
+    const M_GET = 'GET';
+    const M_POST = 'POST';
+    const M_DELETE = 'DELETE';
 
     protected $_method = self::M_GET;
     protected $_headers = [];
@@ -23,17 +22,16 @@ class Request implements RequestInterface
     protected $_uri = null;
     protected $_controller = null;
 
-    function __construct($uri, $method, $headers, $body)
+    public function __construct($uri, $method, $headers, $body)
     {
-        if(!defined('static::M_' . $method))
-            throw new \Exception("Invalid method supplied");
-
+        if (!defined('static::M_'.$method)) {
+            throw new \Exception('Invalid method supplied');
+        }
         $this->_method = $method;
         $this->_headers = $headers;
         $this->_uri = $uri;
 
         return $this;
-
     }
 
     public function getHeaders()
@@ -41,7 +39,8 @@ class Request implements RequestInterface
         return $this->_headers;
     }
 
-    public function setController($controller){
+    public function setController($controller)
+    {
         return $this->_controller = $controller;
     }
 }

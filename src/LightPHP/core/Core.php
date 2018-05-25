@@ -3,15 +3,14 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 07/01/2017
- * Time: 16:42
+ * Time: 16:42.
  */
 
 namespace LightPHP\Core;
 
 /**
  * Class core
- * Handles all core logic
- * @package LightPHP\core
+ * Handles all core logic.
  */
 class Core
 {
@@ -21,34 +20,39 @@ class Core
     protected static $_request = null;
 
     /**
-     * Return the default config
+     * Return the default config.
+     *
      * @return mixed
      */
-    public static function getConfig(){
+    public static function getConfig()
+    {
         return self::$_config;
     }
 
-    public static function setConfig($config){
+    public static function setConfig($config)
+    {
         return self::$_config = $config;
     }
 
-    public static function setServiceLocator($services){
-
+    public static function setServiceLocator($services)
+    {
         $registry = new ServiceRegistry();
 
-        foreach($services as $key => $service){
+        foreach ($services as $key => $service) {
             $registry->set($key, new $service());
         }
 
         self::$_serviceLocator = new \LightPHP\Core\ServiceLocator($registry);
-
     }
-    public static function getServiceLocator(){
+
+    public static function getServiceLocator()
+    {
         return self::$_serviceLocator;
     }
 
-    public function getCoreService(){
-        return $this->getServiceLocator()->get("core_service");
+    public function getCoreService()
+    {
+        return $this->getServiceLocator()->get('core_service');
     }
 
     /**
@@ -82,6 +86,4 @@ class Core
     {
         self::$_layout = $layout;
     }
-
-
 }

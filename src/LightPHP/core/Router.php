@@ -3,40 +3,37 @@
  * Created by PhpStorm.
  * User: sam
  * Date: 12/06/2016
- * Time: 19:55
+ * Time: 19:55.
  */
 
 namespace LightPHP\Core;
 
-use LightPHP\Exceptions\ClassNotFoundException;
-use LightPHP\Exceptions\InvalidRouteCollectionException;
 use LightPHP\Core;
-use LightPHP\Core\Request;
+use LightPHP\Exceptions\InvalidRouteCollectionException;
 
 class Router
 {
-
     protected $routes = [];
     protected $methods = [];
     protected $allowedMethods = [];
 
-    protected $base = "";
+    protected $base = '';
 
     public function __construct($base = null)
     {
-        $_SERVER["HTTP_HOST"] = isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "/";
+        $_SERVER['HTTP_HOST'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '/';
 
-        $this->base = is_null($base) ? $_SERVER["HTTP_HOST"] : $base;
+        $this->base = is_null($base) ? $_SERVER['HTTP_HOST'] : $base;
     }
 
     /**
      * @param $route string
      * @param $method string
      */
-    public function add($methods, $name, $route, $callable){
-
-        if(array_key_exists($name, $this->routes) || array_key_exists($name, $this->methods) || array_key_exists($name, $this->allowedMethods)){
-            throw new \Exception("Name already in use", 500);
+    public function add($methods, $name, $route, $callable)
+    {
+        if (array_key_exists($name, $this->routes) || array_key_exists($name, $this->methods) || array_key_exists($name, $this->allowedMethods)) {
+            throw new \Exception('Name already in use', 500);
         }
 
         $this->routes[$name] = $route;
@@ -46,37 +43,37 @@ class Router
 
     public function addRoutes($routes)
     {
-        if(!is_array($routes)){
+        if (!is_array($routes)) {
             throw new InvalidRouteCollectionException();
         }
 
-        foreach($routes as $route){
-            $this->add($route["method"], $route["name"], $route["route"], $route["callable"]);
+        foreach ($routes as $route) {
+            $this->add($route['method'], $route['name'], $route['route'], $route['callable']);
         }
     }
 
-    public function dispatch(){
-        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : "/";
+    public function dispatch()
+    {
+        $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
 
-        $request = new Request($uri, $_SERVER['REQUEST_METHOD'], getallheaders(), "");
+        $request = new Request($uri, $_SERVER['REQUEST_METHOD'], getallheaders(), '');
         Core::setRequest($request);
 
         foreach ($this->routes as $key => $route) {
-
-            $pattern = "@^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$@D";
-            $matches = Array();
+            $pattern = '@^'.preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)).'$@D';
+            $matches = [];
             // check if the current request matches the expression
-            if(preg_match($pattern, $uri, $matches)) {
-
-                if(is_array($this->methods[$key]) || $this->methods[$key] instanceof Traversable){
+            if (preg_match($pattern, $uri, $matches)) {
+                if (is_array($this->methods[$key]) || $this->methods[$key] instanceof Traversable) {
                     $controller = $this->methods[$key]['controller'];
 
-                    if(class_exists($this->methods[$key]['controller'])){
+                    if (class_exists($this->methods[$key]['controller'])) {
                         $controller = new $controller();
-                        $action = $this->methods[$key]['action']."Action";
+                        $action = $this->methods[$key]['action'].'Action';
 
-                        if(method_exists($controller, $action)){
+                        if (method_exists($controller, $action)) {
                             $controller->setView($this->methods[$key]['view']);
+
                             return $controller->$action();
                         }
                     }
@@ -88,11 +85,13 @@ class Router
         $controller = $this->methods['error']['controller'];
         $controller = new $controller();
         $controller->setView($this->methods['error']['view']);
-        $action = $this->methods['error']['action']."Action";
+        $action = $this->methods['error']['action'].'Action';
+
         return $controller->$action();
     }
 
-    public function getBase(){
+    public function getBase()
+    {
         return $this->base;
     }
 
@@ -119,6 +118,4 @@ class Router
     {
         return $this->allowedMethods;
     }
-
-
 }
